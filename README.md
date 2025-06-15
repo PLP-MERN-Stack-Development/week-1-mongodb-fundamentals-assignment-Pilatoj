@@ -1,47 +1,87 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19775584&assignment_repo_type=AssignmentRepo)
-# MongoDB Fundamentals Assignment
 
-This assignment focuses on learning MongoDB fundamentals including setup, CRUD operations, advanced queries, aggregation pipelines, and indexing.
+**Step 2: Install Dependencies**
+The `insert_books.js` script requires the official MongoDB Node.js driver. Install it using `npm` or your preferred package manager.
 
-## Assignment Overview
 
-You will:
-1. Set up a MongoDB database
-2. Perform basic CRUD operations
-3. Write advanced queries with filtering, projection, and sorting
-4. Create aggregation pipelines for data analysis
-5. Implement indexing for performance optimization
+npm install mongodb
 
-## Getting Started
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install MongoDB locally or set up a MongoDB Atlas account
-4. Run the provided `insert_books.js` script to populate your database
-5. Complete the tasks in the assignment document
+**Step 3: Start the MongoDB Service**
+Ensure your local MongoDB server is running. If not, start it with the following command:
 
-## Files Included
 
-- `Week1-Assignment.md`: Detailed assignment instructions
-- `insert_books.js`: Script to populate your MongoDB database with sample book data
+sudo systemctl start mongod
 
-## Requirements
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- MongoDB Shell (mongosh) or MongoDB Compass
+Verify its status to make sure it's active:
 
-## Submission
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+sudo systemctl status mongod
 
-1. Complete all tasks in the assignment
-2. Add your `queries.js` file with all required MongoDB queries
-3. Include a screenshot of your MongoDB database
-4. Update the README.md with your specific setup instructions
 
-## Resources
+### Running the Scripts
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [MongoDB University](https://university.mongodb.com/)
-- [MongoDB Node.js Driver](https://mongodb.github.io/node-mongodb-native/) 
+#### Populating the Database
+
+The `insert_books.js` script will:
+
+1. Connect to your local MongoDB instance.
+
+2. Create a database named `plp_bookstore`.
+
+3. Create a collection named `books`.
+
+4. Insert 12 sample book documents into the collection.
+
+To run the script, execute the following command in your terminal:
+
+
+node insert_books.js
+
+
+You will see a confirmation message listing the books that were successfully inserted.
+
+#### Executing the Queries
+
+The `queries.js` file contains all the queries for Tasks 2, 3, 4, and 5. To run them, you can load the script directly into `mongosh`.
+
+**Step 1: Open the MongoDB Shell**
+
+
+mongosh
+
+
+**Step 2: Switch to the Database**
+Inside `mongosh`, make sure you are using the correct database:
+
+
+use plp_bookstore;
+
+
+**Step 3: Load and Run the Queries Script**
+You can load the entire `queries.js` file into `mongosh` from your system terminal using the `--file` flag:
+
+
+mongosh --file queries.js
+
+
+Alternatively, if you are already inside `mongosh`, you can use the `load()` function. Make sure you are in the correct directory in your system terminal *before* starting `mongosh`.
+
+
+// Inside mongosh
+load("queries.js");
+
+
+This will execute all the commands in the script sequentially and print the results for each query in your terminal.
+
+### MongoDB Queries Overview
+
+The `queries.js` file is structured to match the assignment tasks:
+
+* **Task 2 (CRUD):** Demonstrates finding, updating, and deleting documents.
+
+* **Task 3 (Advanced Queries):** Covers multi-condition filtering, projection, sorting, and pagination.
+
+* **Task 4 (Aggregation):** Includes pipelines to calculate averages, find top authors, and group data by decade.
+
+* **Task 5 (Indexing):** Shows how to create single and compound indexes and how to use the `.explain()` method to analyze query performance.
